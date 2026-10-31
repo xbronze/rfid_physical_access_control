@@ -22,7 +22,6 @@
 #include "usart.h"
 #include "gpio.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -123,7 +122,7 @@ int main(void)
 		uint8_t cardPresent = 0;
 		uint8_t st;
 
-		st = RC522_Request(PICC_REQALL, tagType);   /* WUPA，唤醒所有状态 */
+		st = RC522_Request(PICC_REQALL, tagType);  
 
 		if (st == MI_OK) {
 				st = RC522_Anticoll(uid);
@@ -134,10 +133,10 @@ int main(void)
 								memcpy(lastUid, uid, 4);
 								cardPresent = 1;
 						}
-						RC522_Halt();     /* 读卡后让卡休眠，防止重复输出 */
+						RC522_Halt();     
 				}
 		} else {
-				cardPresent = 0;      /* 卡片离开，允许下次重新识别 */
+				cardPresent = 0;    
 		}
 
 		HAL_Delay(500);
